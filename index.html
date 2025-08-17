@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Francois+One|Signika" rel="stylesheet">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravakar Mondal - Developer Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /*background-color: #f4f4f9;*/
+            background-color: #d4e5e7;
+            color: #333;
+        }
+
+        header {
+            background-color: #116dbe; /*#333;*/
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 2.5rem;
+            }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+            nav a {
+                color: #fff;
+                margin: 0 1rem;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                nav a:hover {
+                    text-decoration: underline;
+                }
+
+        .section {
+            padding: 2rem;
+        }
+
+            .section h2 {
+                font-size: 2rem;
+                color: #333;
+                text-align: center;
+            }
+
+        .bio, .skills, .projects, .contact {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+            .bio p, .skills ul, .projects .project-list, .contact form {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            .skills ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .skills li {
+                margin: 0.5rem 0;
+            }
+
+            .projects .project-item {
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin: 1rem 0;
+                padding: 1rem;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                .projects .project-item:hover {
+                    transform: translateY(-5px);
+                }
+
+        footer {
+            /*background-color: #333;*/
+            background-color: #116dbe;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1rem;
+        }
+
+            footer a {
+                color: #fff;
+                text-decoration: none;
+            }
+    </style>
+
+    <style>
+        /* Table Container */
+        .table-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive Text Wrap */
+        td {
+            word-wrap: break-word;
+        }
+
+        /* Zebra Striping */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Table */
+        @media screen and (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+            }
+
+                td:before {
+                    position: absolute;
+                    top: 12px;
+                    left: 15px;
+                    width: 45%;
+                    white-space: nowrap;
+                    font-weight: bold;
+                }
+
+                td:nth-of-type(1):before {
+                    content: "Column 1";
+                }
+
+                td:nth-of-type(2):before {
+                    content: "Column 2";
+                }
+
+                td:nth-of-type(3):before {
+                    content: "Column 3";
+                }
+            /* Add more as needed */
+        }
+    </style>
+
+    <script language="JavaScript">
+
+        window.onload = function () {
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+            }, false);
+            document.addEventListener("keydown", function (e) {
+                //document.onkeydown = function(e) {
+                // "I" key
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                    disabledEvent(e);
+                }
+                // "J" key
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                    disabledEvent(e);
+                }
+                // "S" key + macOS
+                if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                    disabledEvent(e);
+                }
+                // "U" key
+                if (e.ctrlKey && e.keyCode == 85) {
+                    disabledEvent(e);
+                }
+                // "F12" key
+                if (event.keyCode == 123) {
+                    disabledEvent(e);
+                }
+            }, false);
+            function disabledEvent(e) {
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                } else if (window.event) {
+                    window.event.cancelBubble = true;
+                }
+                e.preventDefault();
+                return false;
+            }
+        }
+        //edit: removed ";" from last "}" because of javascript error
+    </script>
+
+    <!--<script>
+        $(function () {
+            document.addEventListener('keydown', function (e) {
+                // Disable F12 key
+                if (e.keyCode === 123 || e.key === 'F12') {
+                    e.preventDefault(); // Prevents the default action (opening developer tools)
+                }
+
+                // You can also disable other common developer tool shortcuts like Ctrl+Shift+I (Inspect Element)
+                // Ctrl+Shift+I has keyCode for I as 73
+                if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.key === 'I')) {
+                    e.preventDefault();
+                }
+
+                // Ctrl+U (View Source)
+                // Ctrl+U has keyCode for U as 85
+                if (e.ctrlKey && (e.keyCode === 85 || e.key === 'U')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>-->
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>PRAVAKAR MONDAL</h1>
+        <nav>
+            <a href="#bio">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Educations</a>
+            <a href="#work">Work</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Bio Section -->
+    <section id="bio" class="section bio">
+        <h2 style="text-transform:uppercase">About Me</h2>
+        <hr />
+        <p>
+            Hello! I'm Pravakar Mondal, a passionate web developer with a love for creating interactive and dynamic web
+            applications. Carrying over 9+ years of experience in the IT industry using C#, ASP.Net,ASP.NET CORE, MVC, MS SQL Server, Angular, Postgresql, JQuery, JavaScript, Ajax, JSON, Windows Application, Crystal Report, Web API, API INTEGRATION (ONLINE PAYMENT, THIRD PARTY APPLICATION.), AWS S3 etc. Seeking for career growth in Software industry, Development and Web application architecture utilizing knowledge possessed in previous jobs. Having successful track record in working with all levels of technical and non-technical staff in hierarchical organizations.
+            I am always looking for opportunities to learn and grow as a developer.
+        </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <h2 style="text-transform:uppercase">Skills</h2>
+        <hr />
+        <table>
+            <tr>
+            <td>HTML5 & CSS3</td>
+            <td>JavaScript & Jquery</td>
+            </tr>
+            <tr>
+                <td>ASP.Net with C#</td>
+                <td>ASP.Net MVC</td>
+            </tr>
+            <tr>
+                <td>ASP.Net Core</td>
+                <td>Angular 17</td>
+            </tr>
+            <tr>
+                <td>Web Service/Web API</td>
+                <td>Dot Net Core Web API</td>
+            </tr>
+            <tr>
+                <td>API Integration Including Payment Gateway(Billdesk,Razorpay, Paypall etc)</td>
+                <td>Crystal Report</td>
+            </tr>
+            <tr>
+                <td>Responsive Web Design</td>
+                <td>Desktop application</td>
+            </tr>
+            <tr>
+                <td>MS SQL Server</td>
+                <td>Postgresql</td>
+            </tr>
+        </table>
+           
+    </section>
+
+    <section id="education" class="section projects">
+        <h2 style="text-transform:uppercase">Education</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h3>2014-16</h3>
+                <h3>GNIIT (SOFTWARE ENGINEERING)</h3>
+                <p>
+                  NIIT (NATIONAL INSTITUTE OF INFORMATION TECHNOLOGY)
+                </p>
+                <!--<a href="https://github.com/yourgithubusername/project1" target="_blank">View on GitHub</a>-->
+            </div>
+            <div class="project-item">
+                <h3>2013</h3>
+                <h3>B.A. IN (ENGLISH, HONS.)</h3>
+                <p>
+                   	CALCUTTA UNIVERSITY   
+                </p>
+                <!--<a href="https://github.com/yourgithubusername/project1" target="_blank">View on GitHub</a>-->
+            </div>
+        </div>
+      </section>
+    <section id="work" class="section projects">
+        <h2 style="text-transform:uppercase">Working Experiences</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h2>CyberSwift Infotech Pvt. Ltd.</h2>
+                <p style="text-align: center;">
+                   April 2024 - Present
+                </p>
+                <hr />
+                <h2>Cogito Software Solutions Pvt. Ltd.</h2>
+                <p style="text-align: center;">
+                    June 2021 - March 2024
+                </p>
+                <hr />
+                <h2>Milligram IT | Web, Mobile And Software Development Company</h2>
+                <p style="text-align: center;">
+                    January 2020 - June 2021
+                </p>
+                <hr />
+                <h2>LINCOLN EDUCATION PVT. LTD.</h2>
+                <p style="text-align: center;">
+                    May 2026 - January 2020
+                </p>
+                <!--<a href="https://github.com/yourgithubusername/project1" target="_blank">View on GitHub</a>-->
+            </div>
+             <!--<div class="project-item">
+                <h3>2013</h3>
+                <h3>B.A. IN (ENGLISH, HONS.)</h3>
+                <p>
+                    CALCUTTA UNIVERSITY
+                </p>
+                <a href="https://github.com/yourgithubusername/project1" target="_blank">View on GitHub</a>
+            </div>-->
+        </div>
+    </section>
+        <!-- Projects Section -->
+        <section id="projects" class="section projects">
+            <h2 style="text-transform:uppercase">Projects</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Forest & Environment Department</h3>
+                    <h3>Technologies : Angular, Nest JS and Postgresql.</h3>
+                    <p>
+                        ●	Develop module wise page using Angular.
+                        ●	Write backend code using Nest JS.
+                        ●	Design Tables, function, view in postgresql.
+                        ●	Code merges with GIT.
+                        ●	Upload code in IIS server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project1" target="_blank">View on GitHub</a>-->
+                </div>
+                <div class="project-item">
+                    <h3>Transmission Asset Management System</h3>
+                    <h3>Technologies : Angular, Nest JS and Postgresql.</h3>
+                    <p>
+                        ●	Issues fixing for existing modules.
+                        ●	Develop new modules using Asp.net MVC and backend code in Asp.net Core.
+                        ●	Design Tables, Stored procedures, function, index, cursor and Job in SQL Server.
+                        ●	Upload code in IIS inside server.</p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+                <div class="project-item">
+                    <h3>Online Application & Management</h3>
+                    <h3>Technologies : ASP.Net with C# (4.5), SQL Server, Crystal Report.</h3>
+                    <p>
+                        ●	Helping junior to write code & store procedure etc.
+                        ●	Develop forms using C# & Asp.net web forms.
+                        ●	Design Tables, Stored procedures, function, index, cursor etc. in SQL Server.
+                        ●	Design & write code for all Report in crystal report.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+                <div class="project-item">
+                    <h3>Certificate Generation With Lenticular Image</h3>
+                    <h3>Technologies : ASP.Net with C# (4.5).</h3>
+                    <p>
+                        ●	Design & Develop new modules using C# & Asp.net windows forms.
+                        ●	RND on Lenticular for name text.
+                        ●	Store data in .dat file.
+                        ●	Created exe file for end users.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+                <div class="project-item">
+                    <h3>Gofba</h3>
+                    <h3>Technologies : ASP.Net with C# (4.5), jQuery, javascript, ajax, telerik, SQL Server. </h3>
+                    <p>
+                        ●	Develop new & existing modules using C#.Net & Asp.net web forms.
+                        ●	Helping junior to write code & store procedure etc. & Involved in writing coding for Server and Client side.
+                        ●	Provide API for mobile app.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+                <div class="project-item">
+                    <h3>Employee Management</h3>
+                    <h3>Technologies : ASP.Net with C# (4.5), jQuery, javascript, ajax, telerik, SQL Server . </h3>
+                    <p>
+                        ●	Develop new & existing modules using C#.Net & Asp.net web forms.
+                        ●	Helping junior to write code & store procedure etc. & Involved in writing coding for Server and Client side.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+
+                <div class="project-item">
+                    <h3>Asset Management System.</h3>
+                    <h3>Technologies : Angular 10, Asp.net with c#, jQuery, JavaScript, SQL Server 2014. </h3>
+                    <p>
+                        ●	Develop new modules using C#.Net & Angular & manage project.
+                        ●	Design Tables, Stored procedures, function etc. in SQL Server.
+                        ●	Helping junior to write code.
+                        ●	Provide API for mobile app.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+
+                <div class="project-item">
+                    <h3>School, College & Education System</h3>
+                    <h3>Technologies : ASP.Net MVC with C# (4.0), jQuery, javascript, ajax, SQL Server 2014, Api Integration. </h3>
+                    <p>
+                        ●	Develop new & existing modules using C#.Net & MVC and manage project.
+                        ●	Design Tables, Stored procedures, function, cursor etc. in SQL Server.
+                        ●	Helping junior to write code.
+                        ●	Applied many API like online payment, SQL Accounting etc.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+
+                <div class="project-item">
+                    <h3>Magic Shopping</h3>
+                    <h3>Technologies : ASP.Net web form with C# (4.0), jQuery, javascript, ajax, SQL Server 2014 </h3>
+                    <p>
+                        ●	Develop new & existing modules using C#.Net & Web forms and manage project.
+                        ●	Design Tables, Stored procedures, function, cursor etc. in SQL Server.
+                        ●	Upload code in IIS inside server.
+                    </p>
+                    <!--<a href="https://github.com/yourgithubusername/project2" target="_blank">View on GitHub</a>-->
+                </div>
+                <!-- Add more project items as needed -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <h2 style="text-transform:uppercase">Contact</h2>
+            <hr />
+            <form action="mailto:your-email@example.com" method="POST" enctype="text/plain">
+                <label for="name">Location:</label><br>
+                <!--<input type="text" id="name" name="name" required>-->
+                <label>Kolkata</label>
+                <br><br>
+
+                <label for="email">Email:</label><br>
+                <!--<input type="email" id="email" name="email" required>-->
+                <label>pravakarmofficial007@gmail.com</label>
+                <br><br>
+
+                <label for="message">Call/Whatsapp:</label><br>
+                <!--<textarea id="message" name="message" rows="4" required></textarea>-->
+                <label>+91 6295930220</label>
+                <br><br>
+
+                <!--<input type="submit" value="Send Message">-->
+            </form>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>
+                Created by Pravakar Mondal &copy; 2025 | 
+                <!--<a href="https://github.com/yourgithubusername" target="_blank">GitHub</a> |-->
+                <!--<a href="https://www.linkedin.com/in/yourlinkedinprofile" target="_blank">LinkedIn</a>-->
+            </p>
+        </footer>
+
+</body>
+
+</html>
